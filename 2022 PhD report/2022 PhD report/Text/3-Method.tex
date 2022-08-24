@@ -144,16 +144,36 @@ For exorem, we uniquely need to find the equatorial gravity at 1bar, to do this 
 
 As such we use a simple linear regression. We avoid all extrapolations. As such, should the value of $g_c$ not be included in the grid, then an exploration is undertaken as to include it. This can be the case for large mass planets.\par
 
-For exoris, we need to find $T_{ris}$ and $\gamma_{he}$. To do this we chose to fix the input value of $\gamma_{he}$ using the average molecular mass ($\mu_c$) using the following :
+For exoris, we need to find $T_{ris}$ and $\gamma_{He}$. To do this we chose to fix the input value of $\gamma_{He}$ using the average molecular mass ($\mu_c$) using the following :
 
 \begin{align} 
-    \frac{1}{\mu} = (1-\gamma_{he})\frac{1}{\mu_{h_2}} + \gamma_{he}*\frac{1}{\mu_{he}}
+    \frac{1}{\mu_c} = (1-\gamma_{He})\frac{1}{\mu_{H_2}} + \gamma_{He}*\frac{1}{\mu_{He}}
 \end{align}
 
 Which gives $\gamma_{he}$ :
 
 \begin{align} 
-    \gamma_{he} = 2-\frac{4}{\mu}
+    \gamma_{He} = 2-\frac{4}{\mu_c}
+\end{align}
+
+However the $\gamma_{He}$ here is evaluated using exorem, as such we need to be cautious. In exorem one mol of atmosphere contains a mix of the potential chemicals of interest including $H_2$ and not atomic hydrogen as is used in the mass ratio for exoris, we hence need to define this evaluated $\gamma_{He}$ as $\gamma_{He}^*$ which is defined as follows.
+
+\begin{align} 
+    \gamma_{He}^* = \frac{m_{He}}{m_{H_2}+m_{He}}
+\end{align}
+
+In exoris we have  $\gamma_{He}$ defined as :
+
+\begin{align} 
+    \gamma_{He} = \frac{m_{He}}{m_{H}+m_{He}}
+\end{align}
+
+The reason behind this difference is due to the EOS for hydrogen which is standardized for $H$.
+
+As such if we use $m_H = m_{H_2}/2$ we have the following expression for  $\gamma_{He}$ in exoris :
+
+\begin{align} 
+    \gamma_{He} = \frac{2\gamma_{He}^*}{\gamma_{He}^*+1}
 \end{align}
 
 We can now look for the surface pressure to use in exoris ($T_{ris}$). To do this, we again plot its behaviour against the given parameters at $P_c$ this shows the following :

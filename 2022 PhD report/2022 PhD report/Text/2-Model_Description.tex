@@ -176,9 +176,9 @@ By doing this, we need to change \cref{eq:S1} and \cref{eq:S2} to account for th
 Again neglecting the ideal mixing term and using the helium to hydrogen mass fraction ($\gamma_{He}$) and water mass fraction ($\gamma_{H_2O}$), we obtain the following expression for $S$ :
 
 \begin{align}
-    x_h = \frac{36*(\gamma_{H_2O}-1)*(\gamma_{He}-1)}{\gamma_{H_2O}*(27*\gamma_{He}-34)-27*\gamma_{He}+36} \nonumber \\
-    x_he = -\frac{9*(\gamma_{H_2O}-1)*\gamma_{He}}{\gamma_{H_2O}*(27*\gamma_{He}-34)-27*\gamma_{He}+36} \nonumber \\
-    x_h2o = \frac{2*\gamma_{H_2O}}{\gamma_{H_2O}*(27*\gamma_{He}-34)-27*\gamma_{He}+36} \nonumber \\
+    x_{h} = \frac{36*(\gamma_{H_2O}-1)*(\gamma_{He}-1)}{\gamma_{H_2O}*(27*\gamma_{He}-34)-27*\gamma_{He}+36} \nonumber \\
+    x_{he} = -\frac{9*(\gamma_{H_2O}-1)*\gamma_{He}}{\gamma_{H_2O}*(27*\gamma_{He}-34)-27*\gamma_{He}+36} \nonumber \\
+    x_{h_2o} = \frac{2*\gamma_{H_2O}}{\gamma_{H_2O}*(27*\gamma_{He}-34)-27*\gamma_{He}+36} \nonumber \\
     S = S_{h}x_{H} + S_{he}x_{He} + S_{he}x_{H2O} \label{eq:S4}
 \end{align}
 
@@ -191,7 +191,7 @@ Again we need to compute the "surface density" and the given pressure and temper
 Again here we will neglect mixing terms. Substituting he helium to hydrogen mass fraction ($\gamma_{He}$) and water mass fraction ($\gamma_{H_2O}$) into \cref{eq:D3} we get : 
 
 \begin{align}
-    \rho = \frac{rho_H*rho_{He}*rho_{H_2O}}{(\rho_H*\rho_{He}*\gamma_{H_2O}-\rho_H*\rho_{H_2O}*(\gamma_{H_2O}-1)*\gamma_{He}+\rho_{He}*\rho_{H_2O}*(\gamma_{H_2O}-1)*(\gamma_{He}-1))} \label{eq:D4}
+    \rho = \frac{rho_H*rho_{He}*rho_{H_2O}}{\begin{matrix}\rho_H*\rho_{He}*\gamma_{H_2O}\\-\rho_H*\rho_{H_2O}*(\gamma_{H_2O}-1)*\gamma_{He}\\+\rho_{He}*\rho_{H_2O}*(\gamma_{H_2O}-1)*(\gamma_{He}-1)\end{matrix}} \label{eq:D4}
 \end{align}
 
 Nullifying $\gamma_{H_2O}$ in \cref{eq:S4} and \cref{eq:D4} gives as expected \cref{eq:S2} and \cref{eq:D2}. Details on how \cref{eq:S4} and \cref{eq:D4} are derived are given in the annexes. Details on the derivation of $S_{mix}$ are equally given in the annexes.

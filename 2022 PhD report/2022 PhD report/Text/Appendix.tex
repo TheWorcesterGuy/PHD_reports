@@ -61,3 +61,36 @@ In practice, the methods presented were not coded but imported from the python S
 \section{Notes on exorem model selection}
 
 As stated in the model description, exorem can in certain conditions struggle to converge. This happens generally in zones of the grid where the irradiation temperature is low and internal temperature high. Exorem can not balance the two stream flux model and balance the temperature at the bottom and top of the atmosphere. To deal with this, we help Exorem converge either by relying on T. Guillot (2010) \parencite{guillot_radiative_2010} non grey analytical model to provide initial pressure temperature profiles to guide exorem, these do not take into account irradiation. We can also re-inject profiles from the grid into Exorem, to accomplish this we find the closest profile to the given input parameters. However often this does not suffice and we still have non-converged profiles. It would be taking a risk to leave these profiles in the grid especially taking into account that for the moment we do not use any smoothing in the interpolation methods considered above. As such we chose to remove these profiles. Through trial and error it was shown that a systematic code to identify bad profiles was inefficient. As such a simple tree based model was used to identify such profiles. To do this a LGBM classifier was trained. LGBM classifiers are gradient boosted tree based learning algorithms that have low memory usage and are more efficient than most other classifiers such as random forests. They use leaf wise tree growth which increases efficiency. The disadvantage of such classifiers are that they are very sensitive to over-fitting and require relatively large data-sets. The model was trained using the top atmosphere flux ratio, bottom atmosphere flux ratio, effective temperature ratio, internal temperature and irradiation temperature. The more data science orientated reader might be concerned when seeing that dimensional data was used as a feature. We allowed ourselves to do this as the internal temperature and irradiation temperature are bounded by the grid limits, rigorously one should divide these values by their maximum value on the grid. The results obtained were an accurate categorisation of 98\% of profiles, with an equal split percentage wise between false positives and false negatives. 
+
+\section{Notes on entropy of mixes}
+
+As shown in \parencite{chabrier_new_2019}, the expression for a given extensive quantity $W$ at a given $(T,P)$ for a mixture is given by :
+
+\begin{align} 
+    W(T,P) = \sum_{i} X_{i} W_{i}(T,P)
+    \label{eq:extensive_qty}
+\end{align}
+
+With :
+
+\begin{align} 
+    X_{i} = \frac{M_i}{\sum_{i}M_{i}}
+    \label{eq:mass_fraction}
+\end{align}
+
+Subsequently we can express the entropy of a mix of $He/H/H_2O$ as follows :
+
+\begin{align} 
+    S = \sum_{i} X_{i} S_{i}(T,P) + S_{mix}(T,P)
+    \label{eq:entropy_mix1}
+\end{align}
+
+\begin{align} 
+    S = X_{H} S_{H}(T,P) + X_{He} S_{He}(T,P) \nonumber \\ 
+    + X_{H_2O} S_{H_2O}(T,P) + S_{mix}(T,P)
+    \label{eq:entropy_mix2}
+\end{align}
+
+With here $S_{mix}(T,P)$ the ideal mixing term that we will better define subsequently. But we shall consider equal to zero.
+
+We need to substitute the expressions for the mass fractions. 
