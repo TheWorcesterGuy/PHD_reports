@@ -146,3 +146,13 @@ With $Y_x$ the mass fraction of the element $x$.
 \end{figure}
 
 \Cref{fig:MM_Met} shows the evolution of the molecular mass for profiles that are linked at 100 bars for different metallicities an temperatures at linkage. As expected, the molecular mass increases with metallicity, from a quasi pure $H_2$ atmosphere to a mix of gasses. The linkages here were carried out with an objective of going to 100 in metallicity, however no results were found. This is indicative of the limitations of using the IGL for higher metallicities. We should most probably directly link on density.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.48\textwidth]{Images/Met_rhoerr.png}
+    \caption{Average erreur on density between Exoris and Exorem, as a function of metallicity at a linkage pressure of 100 bars}
+    \label{fig:rhoerr_Met}
+\end{figure}
+
+\Cref{fig:rhoerr_Met} shows the density erreur between exorem and exoris at the linkage density of 100 bars, we see that we have a coherent result with that which is shown in \cref{fig:MM_Met} and \cref{fig:EOS_comp_grid} and again indicates that we need to use the density instead of the molecular mass. Indeed it is essential to estimate the planetary radius to have a continuity in the density as it is used in the hydrostatic balance equation. To do this we propose to subsequently interpolate $Y_{He}$ and at a later stage $Y_{H_2O}$ using the exoris grid and using the exorem density. 
+Note : It has been observed in the data a 30\% erreur on results at a metellicity of 1 compared to the litterature, this is coherent with \cref{fig:rhoerr_Met}.
