@@ -94,3 +94,55 @@ Subsequently we can express the entropy of a mix of $He/H/H_2O$ as follows :
 With here $S_{mix}(T,P)$ the ideal mixing term that we will better define subsequently. But we shall consider equal to zero.
 
 We need to substitute the expressions for the mass fractions. 
+
+\section{Notes on ideal gas approximation}
+The ideal gas approximation is the equation of state (EOS) used in Exorem, it is therefore the EOS used at the point of linkage as we determine the molecular mass from exorem to evaluate the Helium fraction required.
+We need to verify the validity of the ideal gas law (IGL).
+The common way to express the IGL is as follows :
+
+\begin{align} 
+    PV = nRT \label{eq:IGL}
+\end{align}
+
+With $P$ the pressure ($Pa$), $V$ the volume ($m^3$), $n$ the quantity of matter $mols$, $R$ perfect gas constant ($J.k^{-1}.mol^{-1}$) and $T$ the temperature ($K$).
+
+We can rewrite \cref{eq:IGL} using the molecular mass and the density as follows :
+
+\begin{align} 
+    \rho = \frac{\mu P}{RT} \label{eq:IGL2}
+\end{align}
+
+With $\rho$ the density in $kg.m^{-3}$ and $\mu$ the molecular mass in ($kg.mol^{-1}$). To verify the validity of the IGL, we propose to take an exoris profile computed using the ab-initio EOS and to evaluate the density using the IGL for each pressure level. We can then compare the density given by exoris and the IGL density.
+
+The molecular mass is given using :
+
+\begin{align} 
+    \frac{1}{\mu} = \frac{Y_{He}}{4} + \frac{Y_{H_2O}}{18} + \frac{1-Y_{He}-Y_{H_2O}}{2} \label{eq:IGL2}
+\end{align}
+
+With $Y_x$ the mass fraction of the element $x$.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.48\textwidth]{Images/EOS_comparaison.png}
+    \caption{Ideal gas law [orange] compared to exoris ab-initio EOS [blue] for various configurations}
+    \label{fig:EOS_comp}
+\end{figure}
+
+\Cref{fig:EOS_comp} shows the difference in behaviour between the IGL and the exoris profile for a random selection of configurations. As expected at lower pressure the idea gas law is a good enough model of the gasses behaviour. However divergences appear for higher molecular weights. Indeed higher molecular weights indicates that we are mixing $H_2$ and $He$, the mix increases potential interactions and the IGL is no longer as valid. To correctly evaluate the impact, we propose to to explore the ratio between ideal and non ideal density at a pressure of 100 bars for a grid of molecular weights. \Cref{fig:EOS_comp_grid} shows the results of this grid, where a color bar has been added to show the impact of an increasing water fraction. The 0 line represents identical densities and consequently equivalence between the EOS. We see here that increasing the molecular weight for no added water leads to a slight discrepancy between the EOS. Adding water leads to very different densities and as such the IGL is no longer valid. Indeed water has a non negligible impact on intra molecule interactions which are not taken into account in the IGL.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.48\textwidth]{Images/EOS_comparaison_grid.png}
+    \caption{Grid of density ratios (1-IGL/Ab-initio) at a pressure of 100bars for various molecular weights. Colorbar: Mass fraction of water.}
+    \label{fig:EOS_comp_grid}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.48\textwidth]{Images/MM_Met.png}
+    \caption{Molecular mass as a function of metallicity for linked Exorem-Exoris profiles at a linking pressure of 100 bars. Colorbar : Temperature at linkage ($K$)}
+    \label{fig:MM_Met}
+\end{figure}
+
+\Cref{fig:MM_Met} shows the evolution of the molecular mass for profiles that are linked at 100 bars for different metallicities an temperatures at linkage. As expected, the molecular mass increases with metallicity, from a quasi pure $H_2$ atmosphere to a mix of gasses. The linkages here were carried out with an objective of going to 100 in metallicity, however no results were found. This is indicative of the limitations of using the IGL for higher metallicities. We should most probably directly link on density.
